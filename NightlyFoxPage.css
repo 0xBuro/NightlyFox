@@ -1,0 +1,127 @@
+/*                                                                                      |
+  Humble New Tab Page Theme                                                             |
+                                                                                        |
+  [NightlyFox]                                                                          |
+  by Burakbo https://github.com/Burakbo                                                 |
+                                                                                        |
+  inspired by akshat46's [FlyingFox]                                                    |
+  https://github.com/akshat46/FlyingFox/                                                |
+                                                                                        |
+  color scheme inspiration was the Firefox Nightly icon.                                |
+                                                                                        |
+----------------------------------------------------------------------------------------|  
+
+  color-1..color5 main Bookmark color, mine is #232323 default for every bookmark
+  
+  color-*-a: gradient color 1, mine is: #3f70cb
+  
+  color-*-a: gradient color 2, mine is: #4e4296
+  
+  color-*-a=color-*-b this will make solid default colored bookmarks.
+  go like color-1-a #xxxxxx; and color-1-b #yyyyyy; if you want gradient.
+  
+  folder-color: bookmark subfolders
+  
+*/
+
+/* Color palette */
+:root{
+  
+  --accent-color-1: #3f70cb;
+  --accent-color-2: #4e4296;  
+
+  --color-1-a: #232323;
+  --color-1-b: #232323;      
+  --color-2-a: #232323;
+  --color-2-b: #232323;
+  --color-3-a: #232323;
+  --color-3-b: #232323; 
+  --color-4-a: #232323;
+  --color-4-b: #232323; 
+  --color-5-a: #232323;
+  --color-5-b: #232323;
+  
+  --foloder-color : #232323  
+  
+}
+
+#main a { 
+  position     : relative;
+  margin-bottom: 20px; /* gap inbetween */
+  box-sizing   : border-box; 
+  min-width    : 250px; /* width of rectangle boxes */
+  transition   : all 0.42s ease-in-out !important; /* animation speed back to default color */
+  font-weight : 600;
+  font-family : Montserrat; 
+}
+
+li a::before{
+  position  : absolute;
+  content   : "";
+  top       : 0;
+  right     : 0;
+  bottom    : 0;
+  left      : 0;
+  background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2)) !important; /* gradient color from accent colors */
+  opacity   : 0;
+  z-index   : -1;
+  transition: opacity 0.42s linear; /* animation speed into gradient color */
+}
+
+a:hover::before{
+  opacity: 1;
+}
+
+#main li a:hover{
+transform : scale(1); /* increse scale to make bookmarks like "pop out" */
+}
+
+#main a .icon{
+  filter: opacity(66%); /* use different filters for icons */
+}
+
+/* inverted the github icon color here (n=2 in my case)
+   so it becomes visible on dark bg */
+   
+#main li:nth-of-type(2) a .icon {
+filter: invert(100%) 
+}
+
+#main li:nth-of-type(5n) a{
+  background: linear-gradient(to right, var(--color-1-a), var(--color-1-b));
+  box-shadow: 0 1px 10px -5px var(--color-1-a);
+}
+
+#main li:nth-of-type(5n+1) a{
+  background: linear-gradient(to right, var(--color-2-a), var(--color-2-b));
+  box-shadow: 0 2px 15px -5px var(--color-2-a);
+}
+
+#main li:nth-of-type(5n+2) a{
+  background: linear-gradient(to right, var(--color-3-a), var(--color-3-b));
+  box-shadow: 0 2px 15px -5px var(--color-3-a);
+}
+
+#main li:nth-of-type(5n+3) a{
+  background: linear-gradient(to right, var(--color-4-a), var(--color-4-b));
+  box-shadow: 0 2px 15px -5px var(--color-4-a);
+}
+
+#main li:nth-of-type(5n+4) a{
+  background: linear-gradient(to right, var(--color-5-a), var(--color-5-b));
+  box-shadow: 0 2px 15px -5px var(--color-5-a);
+}
+
+.folder{
+  background: var(--foloder-color) !important;
+  box-shadow: 0 2px 15px -5px var(--foloder-color) !important;
+}
+
+#main .null a{
+  background: var(--foloder-color) !important;
+  box-shadow: 0 2px 15px -5px var(--foloder-color) !important;
+}
+
+#main .column {
+  margin-right: 20px;
+}

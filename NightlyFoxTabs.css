@@ -1,0 +1,91 @@
+/*                                                                                      |
+  Tree Style Tab Theme                                                                  |
+                                                                                        |
+  [NightlyFox]                                                                          |
+  by Burakbo https://github.com/Burakbo                                                 |
+                                                                                        |
+  inspired by akshat46's [FlyingFox]                                                    |
+  https://github.com/akshat46/FlyingFox/                                                |
+                                                                                        |
+  color scheme inspiration was the Firefox Nightly icon.                                |
+                                                                                        |
+----------------------------------------------------------------------------------------| 
+
+*/
+
+:root{
+  --active-tab-color-a     : #3f70cb;
+  --active-tab-color-b     : #4e4296;
+  --tab-hover-color        : #171717;
+  --tab-text-color         : #ffffff;
+}
+
+tab-item {
+  margin       : 12px 30px;
+  margin-right : 10px;
+  border-radius: 5px;
+  padding-right: 10px;
+  transition   : all 0.42s ease-i-out !important;
+  font-weight : 600;
+  font-family : Montserrat; 
+}
+
+tab-item.active {
+  background  : linear-gradient(to right, var(--active-tab-color-a), var(--active-tab-color-b)) !important; 
+  margin-right: 5px;
+  color       : var(--tab-text-color ) !important;
+}
+
+tab-item:hover {
+  background: var(--tab-hover-color ) !important;
+}
+
+tab-item:not(:hover) tab-closebox {
+  right    : -30px;
+  transform: scale(110%);
+}
+
+tab-item tab-closebox{
+  position     : absolute;
+  right        : 10px;
+  height       : 25px;
+  padding-top  : 5px;
+  transition   : all 0.42s ease-in-out;
+}
+
+:root.right tab-item tab-twisty {
+  display: none;
+}
+
+:root.right tab-item tab-favicon {
+  transform: scale(100%);
+  margin-left: 30px;
+  margin-bottom: 5px;
+  order: 1000;
+  filter: grayscale(42%) opacity(100%);
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+  filter: invert(25%); 
+}
+
+:root.right tab-item.active:not(:hover) tab-favicon {
+  filter: grayscale(42%) opacity(80%);
+  transform: scale(150%);
+  margin-right: 5px;
+
+}
+
+:root.right tab-item:hover tab-favicon, :root.right tab-favicon {
+  transform: translateX(30px);
+}
+
+:root.right tab-item:hover tab-favicon 
+{
+  margin-left: -15px;
+}
+
+.tab:not(.group-tab):not([data-current-uri^="chrome:"]):not([data-current-uri^="about:addons"]):not([data-current-uri^="about:preferences"]) 
+.favicon .favicon-default::before {
+  background: url("chrome://branding/content/identity-icons-brand.svg") no-repeat center / 100% !important;
+  mask: none !important;
+}
