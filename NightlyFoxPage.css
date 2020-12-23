@@ -7,119 +7,100 @@
   inspired by akshat46's [FlyingFox]                                                    |
   https://github.com/akshat46/FlyingFox/                                                |
                                                                                         |
-  color scheme inspiration was the Firefox Nightly icon.                                |
+  color scheme inspiration Firefox Nightly.                                |
                                                                                         |
 ----------------------------------------------------------------------------------------|  
-
-  color-1..color5 main Bookmark color, mine is #232323 default for every bookmark
   
-  color-*-a: gradient color 1, mine is: #3f70cb
+  go like color-n-a #hex; and color-n2-b #hex; for every n 
+  if you want gradient.
   
-  color-*-a: gradient color 2, mine is: #4e4296
+  I went with single a color for my design with --folder-color
   
-  color-*-a=color-*-b this will make solid default colored bookmarks.
-  go like color-1-a #xxxxxx; and color-1-b #yyyyyy; if you want gradient.
-  
-  folder-color: bookmark subfolders
   
 */
 
-/* Color palette */
-:root{
-  
-  --accent-color-1: #3f70cb;
-  --accent-color-2: #4e4296;  
+/* Color palette: Firefox Nightly-ish colors */
+:root {
+  --accent-color-1: #3f70bd;
+  --accent-color-2: #7e3476;
 
-  --color-1-a: #232323;
-  --color-1-b: #232323;      
-  --color-2-a: #232323;
-  --color-2-b: #232323;
-  --color-3-a: #232323;
-  --color-3-b: #232323; 
-  --color-4-a: #232323;
-  --color-4-b: #232323; 
-  --color-5-a: #232323;
-  --color-5-b: #232323;
-  
-  --foloder-color : #232323  
-  
+  /* tweak around these if you want gradient bookmarks
+     and add them to the list items below, */
+  /*
+  --color-1-a: #3f70bd;
+  --color-1-b: #7e3476;
+  */
+
+  --folder-color: #151515;
+
+  --shadow-color: #131313;
 }
 
-#main a { 
-  position     : relative;
-  margin-bottom: 20px; /* gap inbetween */
-  box-sizing   : border-box; 
-  min-width    : 250px; /* width of rectangle boxes */
-  transition   : all 0.42s ease-in-out !important; /* animation speed back to default color */
-  font-weight : 600;
-  font-family : Montserrat; 
+#main a {
+  position: relative;
+  margin-bottom: 22px; /* gap inbetween the folders */
+  box-sizing: border-box;
+  min-width: 330px; /* width of rectangle folders, set minimum width to the largest folder */
+  transition: all 0.42s ease-in-out !important; /* animation speed back to default color */
+  font-weight: 400;
+  font-family: Fira Code;
 }
 
-li a::before{
-  position  : absolute;
-  content   : "";
-  top       : 0;
-  right     : 0;
-  bottom    : 0;
-  left      : 0;
-  background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2)) !important; /* gradient color from accent colors */
-  opacity   : 0;
-  z-index   : -1;
+/* change to gradient on mouseover */
+li a::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--accent-color-1),
+    var(--accent-color-2)
+  ) !important; /* gradient color from accent colors */
+  opacity: 0; /* initially hidden */
+  z-index: -1;
   transition: opacity 0.42s linear; /* animation speed into gradient color */
 }
 
-a:hover::before{
-  opacity: 1;
+a:hover::before {
+  opacity: 1; /* here its displayed only on mouseover*/
 }
 
-#main li a:hover{
-transform : scale(1); /* increse scale to make bookmarks like "pop out" */
+#main li a:hover {
+  transform: scale(1.3); /* increse scale to make bookmarks like "pop out" */
 }
 
-#main a .icon{
-  filter: opacity(66%); /* use different filters for icons */
+#main a .icon {
+  filter: opacity(66%); /* icon opacity*/
 }
 
 /* inverted the github icon color here (n=2 in my case)
-   so it becomes visible on dark bg */
-   
+   so it becomes visible on my dark bg
+   remember: icons of position n=2 will always be inverted if you don't change this */
+
 #main li:nth-of-type(2) a .icon {
-filter: invert(100%) 
+  filter: invert(100%);
 }
 
-#main li:nth-of-type(5n) a{
-  background: linear-gradient(to right, var(--color-1-a), var(--color-1-b));
-  box-shadow: 0 1px 10px -5px var(--color-1-a);
+/*every n list item looks like this,
+you can make the list items appear differently by telling
+which index you want to change instead of all n items */
+
+#main li:nth-of-type(n) a {
+  background: var(--folder-color);
+  box-shadow: 2px 7px 18px -5px var(--shadow-color);
 }
 
-#main li:nth-of-type(5n+1) a{
-  background: linear-gradient(to right, var(--color-2-a), var(--color-2-b));
-  box-shadow: 0 2px 15px -5px var(--color-2-a);
+.folder {
+  background: var(--folder-color) !important;
+  box-shadow: 2px 7px 18px -5px var(--folder-color) !important;
 }
 
-#main li:nth-of-type(5n+2) a{
-  background: linear-gradient(to right, var(--color-3-a), var(--color-3-b));
-  box-shadow: 0 2px 15px -5px var(--color-3-a);
-}
-
-#main li:nth-of-type(5n+3) a{
-  background: linear-gradient(to right, var(--color-4-a), var(--color-4-b));
-  box-shadow: 0 2px 15px -5px var(--color-4-a);
-}
-
-#main li:nth-of-type(5n+4) a{
-  background: linear-gradient(to right, var(--color-5-a), var(--color-5-b));
-  box-shadow: 0 2px 15px -5px var(--color-5-a);
-}
-
-.folder{
-  background: var(--foloder-color) !important;
-  box-shadow: 0 2px 15px -5px var(--foloder-color) !important;
-}
-
-#main .null a{
-  background: var(--foloder-color) !important;
-  box-shadow: 0 2px 15px -5px var(--foloder-color) !important;
+#main .null a {
+  background: var(--folder-color) !important;
+  box-shadow: 2px 7px 18px -5px var(--folder-color) !important;
 }
 
 #main .column {

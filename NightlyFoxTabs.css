@@ -7,85 +7,96 @@
   inspired by akshat46's [FlyingFox]                                                    |
   https://github.com/akshat46/FlyingFox/                                                |
                                                                                         |
-  color scheme inspiration was the Firefox Nightly icon.                                |
+  color scheme inspiration is Firefox Nightly.                                |
                                                                                         |
 ----------------------------------------------------------------------------------------| 
 
 */
 
-:root{
-  --active-tab-color-a     : #3f70cb;
-  --active-tab-color-b     : #4e4296;
-  --tab-hover-color        : #171717;
-  --tab-text-color         : #ffffff;
+/* color palette */
+:root {
+  --active-tab-color-a: #3f70bd;
+  --active-tab-color-b: #7e3476;
+
+  --tab-hover-color: #272727 !important;
+
+  --bg-color: #151515;
+  --tab-text: #d0d0d0;
 }
 
+/* general appeareance of tab items */
 tab-item {
-  margin       : 12px 30px;
-  margin-right : 10px;
-  border-radius: 5px;
-  padding-right: 10px;
-  transition   : all 0.42s ease-i-out !important;
-  font-weight : 600;
-  font-family : Montserrat; 
+  margin: 8px 20px;
+
+  border-radius: 6px;
+  transition: all 0.42s ease-i-out !important;
+  font-size: 16px;
+  font-family: Fira Code;
 }
 
-tab-item.active {
-  background  : linear-gradient(to right, var(--active-tab-color-a), var(--active-tab-color-b)) !important; 
-  margin-right: 5px;
-  color       : var(--tab-text-color ) !important;
-}
-
+/* items on hover */
 tab-item:hover {
-  background: var(--tab-hover-color ) !important;
+  background: var(--tab-hover-color) !important;
 }
 
+/* active/current item */
+tab-item.active,
+tab-item.active:hover {
+  background: linear-gradient(
+    to right,
+    var(--active-tab-color-a),
+    var(--active-tab-color-b)
+  ) !important;
+  margin-right: 15px;
+  color: var(--tab-text) !important;
+  border: none;
+}
+
+/* hide close tab button when not hovered */
 tab-item:not(:hover) tab-closebox {
-  right    : -30px;
+  right: -30px;
   transform: scale(110%);
 }
 
-tab-item tab-closebox{
-  position     : absolute;
-  right        : 10px;
-  height       : 25px;
-  padding-top  : 5px;
-  transition   : all 0.42s ease-in-out;
+/* close tab button */
+tab-item tab-closebox {
+  position: absolute;
+  right: 2px;
+  height: 25px;
+  padding-top: 5px;
+  transition: all 0.42s ease-in-out;
 }
 
+/* hide tab items overlapping right of root */
 :root.right tab-item tab-twisty {
   display: none;
 }
 
 :root.right tab-item tab-favicon {
-  transform: scale(100%);
-  margin-left: 30px;
+  transform: scale(100%); /* full scale icons */
+  margin-left: 42px; /* increase margin to make items before icon fade earlier */
   margin-bottom: 5px;
   order: 1000;
-  filter: grayscale(42%) opacity(100%);
-  border-radius: 50px;
   transition: all 0.2s ease-in-out;
-  filter: invert(25%); 
 }
 
+/* position of favicon on active tab */
 :root.right tab-item.active:not(:hover) tab-favicon {
-  filter: grayscale(42%) opacity(80%);
-  transform: scale(150%);
   margin-right: 5px;
-
 }
 
-:root.right tab-item:hover tab-favicon, :root.right tab-favicon {
+/* hide favicon when close button appears on active tab */
+:root.right tab-item:hover tab-favicon,
+:root.right tab-favicon {
   transform: translateX(30px);
 }
 
-:root.right tab-item:hover tab-favicon 
-{
-  margin-left: -15px;
-}
-
+/*icons from mozilla intern settings/about/preferences*/
 .tab:not(.group-tab):not([data-current-uri^="chrome:"]):not([data-current-uri^="about:addons"]):not([data-current-uri^="about:preferences"]) 
+
+/* default favicon is mozillas fiery fox! */
 .favicon .favicon-default::before {
-  background: url("chrome://branding/content/identity-icons-brand.svg") no-repeat center / 100% !important;
+  background: url("chrome://branding/content/identity-icons-brand.svg")
+    no-repeat center / 100% !important;
   mask: none !important;
 }
